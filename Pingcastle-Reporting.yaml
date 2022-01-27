@@ -1,3 +1,5 @@
+---
+# Zabbix template for pingcastle reporting
 zabbix_export:
   version: '5.4'
   date: '2022-01-25T14:53:21Z'
