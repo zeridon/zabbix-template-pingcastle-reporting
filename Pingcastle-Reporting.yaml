@@ -1,5 +1,3 @@
----
-# Zabbix template for pingcastle reporting
 zabbix_export:
   version: '5.4'
   date: '2022-01-25T14:53:21Z'
@@ -34,53 +32,53 @@ zabbix_export:
           triggers:
             - uuid: 8c2a5dc9582842509ad63e3fe7e69f9a
               expression: |
-                last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_AVERAGE}
-                and
                 last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_HIGH}
+                and
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_AVERAGE}
               name: 'AnomalyScore Average'
               priority: AVERAGE
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 13143ebc029b49b9aea7218192e81660
               expression: 'last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
               name: 'AnomalyScore HIGH'
               priority: HIGH
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: f71ceeff00e641cda22cef0a32311f0b
               expression: |
                 last(/PingCastle Reporting/pingcastle.AnomalyScore)>=1
                 and
-                last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_WARNING}'
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_WARNING}
               name: 'AnomalyScore Info'
               status: DISABLED
               priority: INFO
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: f6e636bc57084827be355c4382c0583b
               expression: |
                 last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_WARNING}
                 and
-                last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}'
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}
               name: 'AnomalyScore Warning'
               priority: WARNING
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
         - uuid: 5123d955e1444b9a960ac3f54ea706f8
           name: 'Engine Version'
@@ -121,20 +119,20 @@ zabbix_export:
               name: 'GlobalScore Average'
               priority: AVERAGE
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 2c17b2d4d9ac455c8f6c2564b1f98d29
               expression: 'last(/PingCastle Reporting/pingcastle.GlobalScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
               name: 'GlobalScore HIGH'
               priority: HIGH
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: ebfed831b4014e2abf240015fc426b60
               expression: |
@@ -145,10 +143,10 @@ zabbix_export:
               status: DISABLED
               priority: INFO
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 79669aa125c3429bb321a69c1f1257c2
               expression: |
@@ -158,10 +156,10 @@ zabbix_export:
               name: 'GlobalScore Warning'
               priority: WARNING
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: ade2c00f240a46f6953f0291f48d96a9
               expression: 'nodata(/PingCastle Reporting/pingcastle.GlobalScore,{$PINGCASTLE_NODATA_DAYS})=1'
@@ -217,20 +215,20 @@ zabbix_export:
               name: 'PrivilegiedGroupScore Average'
               priority: AVERAGE
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 49ac0989572843e7b6faaa258fa012e4
               expression: 'last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
               name: 'PrivilegiedGroupScore HIGH'
               priority: HIGH
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 55ab058002034c5a801b898fd5c41fdc
               expression: |
@@ -241,10 +239,10 @@ zabbix_export:
               status: DISABLED
               priority: INFO
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: d5636fe985c04e789d4c4e1fa1423a98
               expression: |
@@ -254,10 +252,10 @@ zabbix_export:
               name: 'PrivilegiedGroupScore Warning'
               priority: WARNING
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
         - uuid: 5aa9fd2c7f6e47a9a30654fae70df767
           name: StaleObjectsScore
@@ -284,20 +282,20 @@ zabbix_export:
               name: 'StaleObjectsScore Average'
               priority: AVERAGE
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: c0d1cc0af15d4485b610033a78eb661a
               expression: 'last(/PingCastle Reporting/pingcastle.StaleObjectsScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
               name: 'StaleObjectsScore HIGH'
               priority: HIGH
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 341a5ea3259149e6bef2bb75850506fd
               expression: |
@@ -308,10 +306,10 @@ zabbix_export:
               status: DISABLED
               priority: INFO
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 299bc8309c674765824df6dc1fa65803
               expression: |
@@ -321,10 +319,10 @@ zabbix_export:
               name: 'StaleObjectsScore Warning'
               priority: WARNING
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
         - uuid: 27e1ef53b66646ba90e0a64704ef9616
           name: TrustScore
@@ -351,20 +349,20 @@ zabbix_export:
               name: 'TrustScore Average'
               priority: AVERAGE
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 4c221f1f56c542f3ac022a1e28cb985e
               expression: 'last(/PingCastle Reporting/pingcastle.TrustScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
               name: 'TrustScore HIGH'
               priority: HIGH
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 9cb7d721bd744059a8ddf369a034e6b1
               expression: |
@@ -375,10 +373,10 @@ zabbix_export:
               status: DISABLED
               priority: INFO
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: aea9346b5b2d45e589ff62d9a4260970
               expression: |
@@ -388,10 +386,10 @@ zabbix_export:
               name: 'TrustScore Warning'
               priority: WARNING
               description: |
-                score is 0 - no risk identified but some improvements detected
-                score between 1 and 10 - a few actions have been identified
-                score between 10 and 30 - rules should be looked with attention
-                score higher than 30 - major risks identified
+                0 - no risk identified but some improvements detected
+                between 1 and 10 - a few actions have been identified
+                between 10 and 30 - rules should be looked with attention
+                higher than 30 - major risks identified
               manual_close: 'YES'
       macros:
         - macro: '{$PINGCASTLE_NODATA_DAYS}'
