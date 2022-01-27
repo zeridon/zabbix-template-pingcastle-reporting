@@ -10,7 +10,9 @@ zabbix_export:
     - uuid: 9524ba5cbe274fedbb07e4c99c017ba0
       template: 'PingCastle Reporting'
       name: 'PingCastle Reporting'
-      description: 'Template for monitoring PingCastle HealthCheck status. Only general indicators are monitored.'
+      description: |
+        Template for monitoring PingCastle HealthCheck status.
+        Only general indicators are monitored.
       groups:
         - name: Templates/PingCastle
       items:
@@ -19,7 +21,9 @@ zabbix_export:
           type: TRAP
           key: pingcastle.AnomalyScore
           delay: '0'
-          description: 'Anomalies risk score according to pingcastle. Range 0-100. Score is calcucated by checks not fitting in other categories.'
+          description: |
+            Anomalies risk score according to pingcastle. Range 0-100.
+            Score is calcucated by checks not fitting in other categories.
           tags:
             - tag: Application
               value: PingCastle
@@ -29,14 +33,17 @@ zabbix_export:
               value: Anomaly
           triggers:
             - uuid: 8c2a5dc9582842509ad63e3fe7e69f9a
-              expression: 'last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_HIGH} and last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_AVERAGE}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_AVERAGE}
+                and
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_HIGH}
               name: 'AnomalyScore Average'
               priority: AVERAGE
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 13143ebc029b49b9aea7218192e81660
               expression: 'last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
@@ -44,30 +51,36 @@ zabbix_export:
               priority: HIGH
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: f71ceeff00e641cda22cef0a32311f0b
-              expression: 'last(/PingCastle Reporting/pingcastle.AnomalyScore)>=1 and last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_WARNING}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)>=1
+                and
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_WARNING}'
               name: 'AnomalyScore Info'
               status: DISABLED
               priority: INFO
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: f6e636bc57084827be355c4382c0583b
-              expression: 'last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_WARNING} and last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)>{$PINGCASTLE_THRESHOLD_WARNING}
+                and
+                last(/PingCastle Reporting/pingcastle.AnomalyScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}'
               name: 'AnomalyScore Warning'
               priority: WARNING
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
         - uuid: 5123d955e1444b9a960ac3f54ea706f8
           name: 'Engine Version'
@@ -89,7 +102,9 @@ zabbix_export:
           type: TRAP
           key: pingcastle.GlobalScore
           delay: '0'
-          description: 'Global risk score according to pingcastle. Range 0-100. Max of all other risk scores. The lower the better.'
+          description: |
+            Global risk score according to pingcastle. Range 0-100.
+            Max of all other risk scores. The lower the better.
           tags:
             - tag: Application
               value: PingCastle
@@ -99,14 +114,17 @@ zabbix_export:
               value: Score
           triggers:
             - uuid: 5a7a23b4692a4f5f8b38788e3d15b41c
-              expression: 'last(/PingCastle Reporting/pingcastle.GlobalScore)>{$PINGCASTLE_THRESHOLD_AVERAGE} and last(/PingCastle Reporting/pingcastle.GlobalScore)<={$PINGCASTLE_THRESHOLD_HIGH}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.GlobalScore)>{$PINGCASTLE_THRESHOLD_AVERAGE}
+                and
+                last(/PingCastle Reporting/pingcastle.GlobalScore)<={$PINGCASTLE_THRESHOLD_HIGH}
               name: 'GlobalScore Average'
               priority: AVERAGE
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 2c17b2d4d9ac455c8f6c2564b1f98d29
               expression: 'last(/PingCastle Reporting/pingcastle.GlobalScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
@@ -114,30 +132,36 @@ zabbix_export:
               priority: HIGH
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: ebfed831b4014e2abf240015fc426b60
-              expression: 'last(/PingCastle Reporting/pingcastle.GlobalScore)>=1 and last(/PingCastle Reporting/pingcastle.GlobalScore)<={$PINGCASTLE_THRESHOLD_WARNING}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.GlobalScore)>=1
+                and
+                last(/PingCastle Reporting/pingcastle.GlobalScore)<={$PINGCASTLE_THRESHOLD_WARNING}
               name: 'GlobalScore Info'
               status: DISABLED
               priority: INFO
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 79669aa125c3429bb321a69c1f1257c2
-              expression: 'last(/PingCastle Reporting/pingcastle.GlobalScore)>{$PINGCASTLE_THRESHOLD_WARNING} and last(/PingCastle Reporting/pingcastle.GlobalScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.GlobalScore)>{$PINGCASTLE_THRESHOLD_WARNING}
+                and
+                last(/PingCastle Reporting/pingcastle.GlobalScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}
               name: 'GlobalScore Warning'
               priority: WARNING
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: ade2c00f240a46f6953f0291f48d96a9
               expression: 'nodata(/PingCastle Reporting/pingcastle.GlobalScore,{$PINGCASTLE_NODATA_DAYS})=1'
@@ -148,7 +172,9 @@ zabbix_export:
           type: TRAP
           key: pingcastle.PrivilegiedGroups.DomainAdministrators
           delay: '0'
-          description: 'Number of active domain administrators. Should not change. Every change must be manually reviewed and approved.'
+          description: |
+            Number of active domain administrators. Should not change.
+            Every change must be manually reviewed and approved.
           tags:
             - tag: Application
               value: PingCastle
@@ -158,7 +184,10 @@ zabbix_export:
               value: Admins
           triggers:
             - uuid: 39ddeb23be6746df86456b4c2e3436bc
-              expression: 'last(/PingCastle Reporting/pingcastle.PrivilegiedGroups.DomainAdministrators,#1)<>last(/PingCastle Reporting/pingcastle.PrivilegiedGroups.DomainAdministrators,#2)'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.PrivilegiedGroups.DomainAdministrators,#1)
+                <>
+                last(/PingCastle Reporting/pingcastle.PrivilegiedGroups.DomainAdministrators,#2)
               recovery_mode: NONE
               name: 'DomainAdministrators Changed'
               priority: HIGH
@@ -169,7 +198,9 @@ zabbix_export:
           type: TRAP
           key: pingcastle.PrivilegiedGroupScore
           delay: '0'
-          description: 'Privileged objects risk score according to pingcastle. Range 0-100. Score is generated by checks mainly related to administrator accounts. Try to keep as low as possible.'
+          description: |
+            Privileged objects risk score according to pingcastle. Range 0-100.
+            Score is generated by checks mainly related to administrator accounts. Try to keep as low as possible.
           tags:
             - tag: Application
               value: PingCastle
@@ -179,14 +210,17 @@ zabbix_export:
               value: PrivilegedGroup
           triggers:
             - uuid: 2cc5ed63fccc4123a0da9ca6a29296c9
-              expression: 'last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)>{$PINGCASTLE_THRESHOLD_AVERAGE} and last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)<={$PINGCASTLE_THRESHOLD_HIGH}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)>{$PINGCASTLE_THRESHOLD_AVERAGE}
+                and
+                last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)<={$PINGCASTLE_THRESHOLD_HIGH}
               name: 'PrivilegiedGroupScore Average'
               priority: AVERAGE
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 49ac0989572843e7b6faaa258fa012e4
               expression: 'last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
@@ -194,37 +228,46 @@ zabbix_export:
               priority: HIGH
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 55ab058002034c5a801b898fd5c41fdc
-              expression: 'last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)>=1 and last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)<={$PINGCASTLE_THRESHOLD_WARNING}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)>=1
+                and
+                last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)<={$PINGCASTLE_THRESHOLD_WARNING}
               name: 'PrivilegiedGroupScore Info'
               status: DISABLED
               priority: INFO
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: d5636fe985c04e789d4c4e1fa1423a98
-              expression: 'last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)>{$PINGCASTLE_THRESHOLD_WARNING} and last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)>{$PINGCASTLE_THRESHOLD_WARNING}
+                and
+                last(/PingCastle Reporting/pingcastle.PrivilegiedGroupScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}
               name: 'PrivilegiedGroupScore Warning'
               priority: WARNING
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
         - uuid: 5aa9fd2c7f6e47a9a30654fae70df767
           name: StaleObjectsScore
           type: TRAP
           key: pingcastle.StaleObjectsScore
           delay: '0'
-          description: 'Stale objects risk score according to pingcastle. Range 0-100.  Stale objects represent everything about the AD objects and their life cycle: computer and user creation, delegation.'
+          description: |
+            Stale objects risk score according to pingcastle. Range 0-100.
+            Stale objects represent everything about the AD objects and their life cycle,
+            computer and user creation, delegation.
           tags:
             - tag: Application
               value: PingCastle
@@ -234,14 +277,17 @@ zabbix_export:
               value: Stale
           triggers:
             - uuid: 17d6d731877544a284b4f018b76063a8
-              expression: 'last(/PingCastle Reporting/pingcastle.StaleObjectsScore)>{$PINGCASTLE_THRESHOLD_AVERAGE} and last(/PingCastle Reporting/pingcastle.StaleObjectsScore)<={$PINGCASTLE_THRESHOLD_HIGH}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.StaleObjectsScore)>{$PINGCASTLE_THRESHOLD_AVERAGE}
+                and
+                last(/PingCastle Reporting/pingcastle.StaleObjectsScore)<={$PINGCASTLE_THRESHOLD_HIGH}
               name: 'StaleObjectsScore Average'
               priority: AVERAGE
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: c0d1cc0af15d4485b610033a78eb661a
               expression: 'last(/PingCastle Reporting/pingcastle.StaleObjectsScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
@@ -249,37 +295,46 @@ zabbix_export:
               priority: HIGH
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 341a5ea3259149e6bef2bb75850506fd
-              expression: 'last(/PingCastle Reporting/pingcastle.StaleObjectsScore)>=1 and last(/PingCastle Reporting/pingcastle.StaleObjectsScore)<={$PINGCASTLE_THRESHOLD_WARNING}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.StaleObjectsScore)>=1
+                and
+                last(/PingCastle Reporting/pingcastle.StaleObjectsScore)<={$PINGCASTLE_THRESHOLD_WARNING}
               name: 'StaleObjectsScore Info'
               status: DISABLED
               priority: INFO
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 299bc8309c674765824df6dc1fa65803
-              expression: 'last(/PingCastle Reporting/pingcastle.StaleObjectsScore)>{$PINGCASTLE_THRESHOLD_WARNING} and last(/PingCastle Reporting/pingcastle.StaleObjectsScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.StaleObjectsScore)>{$PINGCASTLE_THRESHOLD_WARNING}
+                and
+                last(/PingCastle Reporting/pingcastle.StaleObjectsScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}
               name: 'StaleObjectsScore Warning'
               priority: WARNING
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
         - uuid: 27e1ef53b66646ba90e0a64704ef9616
           name: TrustScore
           type: TRAP
           key: pingcastle.TrustScore
           delay: '0'
-          description: 'Trusts objects risk score according to pingcastle. Range 0-100.  It is about the links between Active Directories (reminder: one AD can compromise one other via trusts).'
+          description: |
+            Trusts objects risk score according to pingcastle. Range 0-100.
+            It is about the links between Active Directories
+            (reminder one AD can compromise one other via trusts).
           tags:
             - tag: Application
               value: PingCastle
@@ -289,14 +344,17 @@ zabbix_export:
               value: Trusts
           triggers:
             - uuid: 99dcd6af55c141e594d69c307f0b8293
-              expression: 'last(/PingCastle Reporting/pingcastle.TrustScore)>{$PINGCASTLE_THRESHOLD_AVERAGE} and last(/PingCastle Reporting/pingcastle.TrustScore)<={$PINGCASTLE_THRESHOLD_HIGH}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.TrustScore)>{$PINGCASTLE_THRESHOLD_AVERAGE}
+                and
+                last(/PingCastle Reporting/pingcastle.TrustScore)<={$PINGCASTLE_THRESHOLD_HIGH}
               name: 'TrustScore Average'
               priority: AVERAGE
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 4c221f1f56c542f3ac022a1e28cb985e
               expression: 'last(/PingCastle Reporting/pingcastle.TrustScore)>{$PINGCASTLE_THRESHOLD_HIGH}'
@@ -304,30 +362,36 @@ zabbix_export:
               priority: HIGH
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: 9cb7d721bd744059a8ddf369a034e6b1
-              expression: 'last(/PingCastle Reporting/pingcastle.TrustScore)>=1 and last(/PingCastle Reporting/pingcastle.TrustScore)<={$PINGCASTLE_THRESHOLD_WARNING}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.TrustScore)>=1
+                and
+                last(/PingCastle Reporting/pingcastle.TrustScore)<={$PINGCASTLE_THRESHOLD_WARNING}
               name: 'TrustScore Info'
               status: DISABLED
               priority: INFO
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
             - uuid: aea9346b5b2d45e589ff62d9a4260970
-              expression: 'last(/PingCastle Reporting/pingcastle.TrustScore)>{$PINGCASTLE_THRESHOLD_WARNING} and last(/PingCastle Reporting/pingcastle.TrustScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}'
+              expression: |
+                last(/PingCastle Reporting/pingcastle.TrustScore)>{$PINGCASTLE_THRESHOLD_WARNING}
+                and
+                last(/PingCastle Reporting/pingcastle.TrustScore)<={$PINGCASTLE_THRESHOLD_AVERAGE}
               name: 'TrustScore Warning'
               priority: WARNING
               description: |
                 score is 0 - no risk identified but some improvements detected
-                  score between 1 and 10 - a few actions have been identified
-                  score between 10 and 30 - rules should be looked with attention
-                  score higher than 30 - major risks identified
+                score between 1 and 10 - a few actions have been identified
+                score between 10 and 30 - rules should be looked with attention
+                score higher than 30 - major risks identified
               manual_close: 'YES'
       macros:
         - macro: '{$PINGCASTLE_NODATA_DAYS}'
