@@ -6,10 +6,10 @@
 # What is Zabbix Template for PingCastle Reporting
 This is a template for collecting high level overview of the status reported by PingCastle. It is intended as basis for C-level reporting dashboard. It includes the most important metrics (scores in PingCastle terminology).
 
-Here you can find the template itself and a sample bash script [`process.sh`](process.sh) for parsing reports and sending to zabbix.
+Here you can find the template itself and a sample bash script [`process.sh`](process.sh) for parsing reports and sending to Zabbix.
 
 # How is this template Designed
-The template is designed with zabbix [Trapper](https://www.zabbix.com/documentation/current/en/manual/config/items/itemtypes/trapper) items. This choice is dictated by the fact that AD scanning by pingcastle is performed on a machine separate from the zabbix server/agent/proxy and then possibly processed on another machine.
+The template is designed with Zabbix [Trapper](https://www.Zabbix.com/documentation/current/en/manual/config/items/itemtypes/trapper) items. This choice is dictated by the fact that AD scanning by pingcastle is performed on a machine separate from the Zabbix server/agent/proxy and then possibly processed on another machine.
 
 It is possible to operate with regular items but this is not easily coordinated on a general basis and needs tuning.
 
@@ -51,13 +51,13 @@ There is also a trigger for stale data.
 
 ## How to Use
 
- * Import Template into zabbix (will go in `Templates/Pingcastle` group)
+ * Import Template into Zabbix (will go in `Templates/Pingcastle` group)
  * Create a host with `DomainSID` as hostname. Use any custom nice looking name in the display name field
  * Make sure you have `zabbix_send` and xmllint installed on the machine doing the processing
  * Run [`process.sh`](process.sh)
 
 # `process.sh`
-A sample [`process.sh`](process.sh) bash script is included for parsing the Pingcastle reports and submitting them to zabbix.
+A sample [`process.sh`](process.sh) bash script is included for parsing the Pingcastle reports and submitting them to Zabbix.
 
 ## Requirements
 `process.sh` - requires as a minimum `xmllint` from `libxml2-utils` and `zabbix_send`
