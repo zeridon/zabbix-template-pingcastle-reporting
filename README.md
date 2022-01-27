@@ -51,15 +51,16 @@ There is also a trigger for stale data.
 
 ## How to Use
 
- * Run Pingcastle
- * Extract Values
- * Submit with `zabbix_send`
+ * Import Template into zabbix (will go in `Templates/Pingcastle` group)
+ * Create a host with `DomainSID` as hostname. Use any custom nice looking name in the display name field
+ * Make sure you have `zabbix_send` and xmllint installed on the machine doing the processing
+ * Run [`process.sh`](process.sh)
 
 # `process.sh`
 A sample [`process.sh`](process.sh) bash script is included for parsing the Pingcastle reports and submitting them to zabbix.
 
 ## Requirements
-`process.sh` - requires as a minimum `xmllint` from `libxml2-utils`
+`process.sh` - requires as a minimum `xmllint` from `libxml2-utils` and `zabbix_send`
 
 # Questions / Issues / Others
 Feel free to use the issues system for requests and others
