@@ -28,14 +28,23 @@ _domain_sid=$(xmllint --xpath '/HealthcheckData/DomainSid/text()' "${_inputfile}
 _t=$(xmllint --xpath '/HealthcheckData/GenerationDate/text()' "${_inputfile}")
 _unixtimestamp=$(date -d "${_t}" +%s)
 
+# Main KPI
 for _key in EngineVersion GlobalScore StaleObjectsScore PrivilegiedGroupScore TrustScore AnomalyScore ; do
 	echo "${_domain_sid}" pingcastle."${_key}" "${_unixtimestamp}" "$(xmllint \
 		--xpath "/HealthcheckData/${_key}/text()" \
 		"${_inputfile}")" >> "${_workdir}"/zabbix_data
 done
 
+# Admins list
 echo "${_domain_sid}" pingcastle.PrivilegiedGroups.DomainAdministrators "${_unixtimestamp}" "$(xmllint \
 	--xpath '/HealthcheckData/PrivilegedGroups/HealthCheckGroupData/GroupName[contains(text(),"Domain Administrators")]/following-sibling::NumberOfMemberEnabled/text()' \
 	"${_inputfile}")" >> "${_workdir}"/zabbix_data
 
+# Total risk points
+# perl magic from https://stackoverflow.com/a/18382280
+echo "${_domain_sid}" pingcastle.TotalRiskPoints "${_unixtimestamp}" "$(xmllint \
+	--xpath '/HealthcheckData/RiskRules/HealthcheckRiskRule/Points/text()' "${_inputfile}" | \
+	perl -nle '$sum += $_ } END { print $sum')" >> "${_workdir}"/zabbix_data
+
+# And we are off to the races
 zabbix_sender -z "${_ZABBIX_SERVER}" -T -i "${_workdir}"/zabbix_data
