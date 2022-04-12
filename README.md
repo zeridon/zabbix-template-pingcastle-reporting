@@ -25,6 +25,7 @@ Currently only key indicators are monitored
 | TrustScore | pingcastle.TrustScore | Score about trusted domains and issues therein |
 | AnomalyScore | pingcastle.AnomalyScore | Anomalies not fitting in any of the rest |
 | DomainAdministrators | pingcastle.DomainAdministrators | Number of Domain Administrators |
+| TotalRiskPoints | pingcastle.TotalRiskPoints | Sum of all matched RiskRule's ponts |
 
 ## Available Triggers
 For every score (Global, Privileged, Stale, Trust, Anomaly) there are 4 triggers according to PingCastle documentation
@@ -51,7 +52,7 @@ There is also a trigger for stale data.
 
 ## How to Use
 
- * Import Template into Zabbix (will go in `Templates/Pingcastle` group)
+ * Import Template into Zabbix (will go in `Templates/PingCastle` group)
  * Create a host with `DomainSID` as hostname. Use any custom nice looking name in the display name field
  * Make sure you have `zabbix_send` and xmllint installed on the machine doing the processing
  * Run [`process.sh`](process.sh)
