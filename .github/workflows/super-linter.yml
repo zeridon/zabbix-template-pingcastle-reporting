@@ -26,6 +26,7 @@ on:
 ###############
 jobs:
   build:
+    needs: pre-commit
     # Name the Job
     name: Lint Code Base
     # Set the agent to run on
