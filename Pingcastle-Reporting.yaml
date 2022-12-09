@@ -1,6 +1,6 @@
 zabbix_export:
   version: '6.0'
-  date: '2022-04-12T13:12:00Z'
+  date: '2022-12-09T14:35:47Z'
   groups:
     - uuid: 3162c73dc8134c1a8712f33ec67c8e5e
       name: Templates/PingCastle
@@ -95,6 +95,28 @@ zabbix_export:
               value: 'FALSE'
             - tag: PC_Type
               value: Version
+        - uuid: cebc2fd879e24e72b08984a80caf1f7b
+          name: 'Latest Version'
+          type: HTTP_AGENT
+          key: pingcastle.EngineVersionLatest
+          delay: '1d'
+          trends: '0'
+          value_type: CHAR
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.tag_name
+          url: 'https://api.github.com/repos/vletoux/pingcastle/releases/latest'
+          headers:
+            - name: X-GitHub-Api-Version
+              value: '2022-11-28'
+            - name: Accept
+              value: application/vnd.github+json
+            - name: User-Agent
+              value: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+          tags:
+            - tag: Application
+              value: PingCastle
         - uuid: dab783294daa4896998a4be6157e7735
           name: GlobalScore
           type: TRAP
@@ -482,6 +504,13 @@ zabbix_export:
                       value:
                         key: pingcastle.PrivilegiedGroups.DomainAdministrators
                         host: PingCastle Reporting
+  triggers:
+    - uuid: f8be1d91fe014622b85bcfb2630e4753
+      expression: |
+        last(/PingCastle Reporting/pingcastle.EngineVersion)<>last(/PingCastle Reporting/pingcastle.EngineVersionLatest)
+      name: 'Engine OLD'
+      priority: WARNING
+      description: 'Trigger if current and latest versions differ'
   graphs:
     - uuid: f39340d64d944a2a93dd4b6e38b94deb
       name: 'Domain Administrators'
