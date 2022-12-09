@@ -19,6 +19,7 @@ Currently only key indicators are monitored
 | Item | Key | Description |
 | ---- | --- | ----------- |
 | Engine Version | pingcastle.EngineVersion | Version of the PingCastle tool used to generate the report |
+| Latest Version | pingcastle.EngineVersionLatest | Latest Version of the PingCastle (extracted from Github releases) |
 | GlobalScore | pingcastle.GlobalScore | Max of all other scores |
 | PrivilegiedGroupScore | pingcastle.PrivilegiedGroupScore | Score about privileges
 | StaleObjectsScore | pingcastle.StaleObjectsScore | Score about stale objects |
