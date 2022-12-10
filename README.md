@@ -62,7 +62,7 @@ There is also a trigger for stale data.
 A sample [`process.sh`](process.sh) bash script is included for parsing the Pingcastle reports and submitting them to Zabbix.
 
 ## Requirements
-`process.sh` - requires as a minimum `xmllint` from `libxml2-utils` and `zabbix_send`
+`process.sh` - requires as a minimum `xmllint` from `libxml2-utils`, `zabbix_send` and `awk`
 
 # Questions / Issues / Others
 Feel free to use the issues system for requests and others

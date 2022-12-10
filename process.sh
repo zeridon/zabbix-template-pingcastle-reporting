@@ -41,10 +41,9 @@ echo "${_domain_sid}" pingcastle.PrivilegiedGroups.DomainAdministrators "${_unix
 	"${_inputfile}")" >> "${_workdir}"/zabbix_data
 
 # Total risk points
-# perl magic from https://stackoverflow.com/a/18382280
 echo "${_domain_sid}" pingcastle.TotalRiskPoints "${_unixtimestamp}" "$(xmllint \
 	--xpath '/HealthcheckData/RiskRules/HealthcheckRiskRule/Points/text()' "${_inputfile}" | \
-	perl -nle '$sum += $_ } END { print $sum')" >> "${_workdir}"/zabbix_data
+	awk '{ sum += $1 } END { print sum }')" >> "${_workdir}"/zabbix_data
 
 # And we are off to the races
 zabbix_sender -z "${_ZABBIX_SERVER}" -T -i "${_workdir}"/zabbix_data
