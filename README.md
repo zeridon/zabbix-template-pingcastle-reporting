@@ -1,5 +1,8 @@
 # Zabbix Template for PingCastle Reporting
 
+## This repository is now deprecated
+Project has moved over to: https://github.com/InformationServices/zabbix-template-pingcastle-reporting
+
 # What is PingCastle
 [Ping Castle](https://www.pingcastle.com/) is a tool designed to assess quickly the Active Directory security level with a methodology based on risk assessment and a maturity framework. It does not aim at a perfect evaluation but rather as an efficiency compromise.
 
