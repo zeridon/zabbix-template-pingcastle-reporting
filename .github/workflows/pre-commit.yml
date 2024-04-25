@@ -1,6 +1,10 @@
 ---
 name: pre-commit
 
+# explicitly set perms to read all
+# ref: https://github.com/bridgecrewio/checkov/issues/4127
+permissions: read-all
+
 on:
   pull_request:
   push:
